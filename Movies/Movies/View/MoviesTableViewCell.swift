@@ -28,6 +28,7 @@ final class MoviesTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         movieImageView.image = nil
+        movieView.backgroundColor = returnRandomBackgroundColor()
     }
 
     // MARK: - Initializators

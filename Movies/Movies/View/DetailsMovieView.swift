@@ -25,16 +25,19 @@ final class DetailsMovieView: UIView {
 
     // MARK: - Public methods
 
-    func setupMovieDetails(movie: Results) {
+    func setupMovieDetails(movie: Results, imageData: Data) {
         movieNameLabel.text = movie.title
         movieDescriptionLabel.text = movie.overview
-
-        let address = "https://image.tmdb.org/t/p/w500/\(movie.posterPath)"
-        guard let URL = URL(string: address) else { return }
         DispatchQueue.main.async {
-            guard let data = try? Data(contentsOf: URL) else { return }
-            self.movieImageView.image = UIImage(data: data)
+            self.movieImageView.image = UIImage(data: imageData)
         }
+
+        //        let address = "https://image.tmdb.org/t/p/w500/\(movie.posterPath)"
+        //        guard let URL = URL(string: address) else { return }
+        //        DispatchQueue.main.async {
+        //            guard let data = try? Data(contentsOf: URL) else { return }
+        //            self.movieImageView.image = UIImage(data: data)
+        //        }
     }
 
     // MARK: - Private methods

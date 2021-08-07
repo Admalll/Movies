@@ -90,7 +90,11 @@ extension MoviesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = MovieDetailsViewController()
-        vc.setupDetailsView(movie: movies[indexPath.row])
+        let movie = movies[indexPath.row]
+        guard let URL = URL(string: "\(Const.imagePath)\(movie.posterPath)") else { return }
+        if let image = imageLoader.getImage(url: URL), let imageData = image.pngData() {
+            vc.setupDetailsView(movie: movie, imageData: imageData)
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 }

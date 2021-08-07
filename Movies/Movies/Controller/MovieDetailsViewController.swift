@@ -16,8 +16,8 @@ final class MovieDetailsViewController: UIViewController {
 
     // MARK: Public methods
 
-    func setupDetailsView(movie: Results) {
+    func setupDetailsView(movie: Results, imageData: Data) {
         title = movie.title
-        detailsView.setupMovieDetails(movie: movie)
+        detailsView.setupMovieDetails(movie: movie, imageData: imageData)
     }
 }
