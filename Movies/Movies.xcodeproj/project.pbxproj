@@ -19,6 +19,7 @@
 		F5EDE69226BDCCED00695CE3 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EDE69126BDCCED00695CE3 /* Film.swift */; };
 		F5EDE69426BE6A4100695CE3 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EDE69326BE6A4100695CE3 /* MovieDetailsViewController.swift */; };
 		F5EDE69626BE6A8700695CE3 /* DetailsMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EDE69526BE6A8700695CE3 /* DetailsMovieView.swift */; };
+		F5EDE69826BE886E00695CE3 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EDE69726BE886E00695CE3 /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F5EDE69126BDCCED00695CE3 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		F5EDE69326BE6A4100695CE3 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		F5EDE69526BE6A8700695CE3 /* DetailsMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsMovieView.swift; sourceTree = "<group>"; };
+		F5EDE69726BE886E00695CE3 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			children = (
 				F5EDE68F26BDCC6600695CE3 /* FilmRequest.swift */,
 				F5EDE69126BDCCED00695CE3 /* Film.swift */,
+				F5EDE69726BE886E00695CE3 /* ImageLoader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			files = (
 				F5EDE67626BD9C9500695CE3 /* MoviesViewController.swift in Sources */,
 				F5EDE68C26BD9EBD00695CE3 /* MoviesView.swift in Sources */,
+				F5EDE69826BE886E00695CE3 /* ImageLoader.swift in Sources */,
 				F5EDE68E26BDAA5F00695CE3 /* MoviesTableViewCell.swift in Sources */,
 				F5EDE69026BDCC6600695CE3 /* FilmRequest.swift in Sources */,
 				F5EDE67226BD9C9500695CE3 /* AppDelegate.swift in Sources */,

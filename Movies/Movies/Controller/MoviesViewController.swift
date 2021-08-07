@@ -4,10 +4,17 @@
 import UIKit
 
 final class MoviesViewController: UIViewController {
+    enum Const {
+        static let imagePath = "https://image.tmdb.org/t/p/w500"
+        static let reuseIdentifier = "MoviesTableViewCell"
+        static let title = "Movies"
+    }
+
     // MARK: - Private properties
 
     private let moviesView = MoviesView()
     private let model = FilmRequest()
+    private let imageLoader = ImageLoader()
     private var movies: [Results] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -31,7 +38,7 @@ final class MoviesViewController: UIViewController {
     // MARK: - Private methods
 
     private func setupView() {
-        title = "Movies"
+        title = Const.title
         moviesView.setupTableViewDatasource(viewController: self)
         loadMovies()
     }
@@ -54,10 +61,30 @@ extension MoviesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell") as? MoviesTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.reuseIdentifier) as? MoviesTableViewCell
         else { return UITableViewCell() }
-        cell.setupMovieCell(with: movies[indexPath.row])
-        cell.setupMovieImage(with: movies[indexPath.row])
+        let movie = movies[indexPath.row]
+
+        cell.setupMovieCell(with: movie)
+
+        guard let URL = URL(string: "\(Const.imagePath)\(movie.posterPath)") else { return cell }
+        cell.currentURL = URL
+
+        if let image = imageLoader.getImage(url: URL) {
+            cell.setupMovieImage(with: image)
+            return cell
+        }
+
+        DispatchQueue.global().async {
+            guard let imageData = try? Data(contentsOf: URL) else { return }
+            guard let image = UIImage(data: imageData) else { return }
+            DispatchQueue.main.async {
+                if URL == cell.currentURL {
+                    cell.setupMovieImage(with: image)
+                    self.imageLoader.setImage(url: URL, image: image)
+                }
+            }
+        }
         return cell
     }
 

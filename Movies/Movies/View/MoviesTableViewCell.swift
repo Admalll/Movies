@@ -13,12 +13,21 @@ final class MoviesTableViewCell: UITableViewCell {
     private let movieScoreLabel = UILabel()
     private let movieView = UIView()
 
+    // MARK: - Open properties
+
+    var currentURL: URL?
+
     // MARK: - UITableViewCell
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 7, left: 0, bottom: 7, right: 0))
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        movieImageView.image = nil
     }
 
     // MARK: - Initializators
@@ -43,15 +52,8 @@ final class MoviesTableViewCell: UITableViewCell {
         movieScoreLabel.text = String(movie.voteAverage)
     }
 
-    func setupMovieImage(with movie: Results) {
-        let address = "https://image.tmdb.org/t/p/w500/\(movie.posterPath)"
-        guard let URL = URL(string: address) else { return }
-        DispatchQueue.global().async {
-            guard let data = try? Data(contentsOf: URL) else { return }
-            DispatchQueue.main.async {
-                self.movieImageView.image = UIImage(data: data)
-            }
-        }
+    func setupMovieImage(with image: UIImage) {
+        movieImageView.image = image
     }
 
     // MARK: - Private methods
