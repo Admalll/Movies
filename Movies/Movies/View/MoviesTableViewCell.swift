@@ -46,9 +46,11 @@ final class MoviesTableViewCell: UITableViewCell {
     func setupMovieImage(with movie: Results) {
         let address = "https://image.tmdb.org/t/p/w500/\(movie.posterPath)"
         guard let URL = URL(string: address) else { return }
-        DispatchQueue.main.async {
+        DispatchQueue.global().async {
             guard let data = try? Data(contentsOf: URL) else { return }
-            self.movieImageView.image = UIImage(data: data)
+            DispatchQueue.main.async {
+                self.movieImageView.image = UIImage(data: data)
+            }
         }
     }
 
