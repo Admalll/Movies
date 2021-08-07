@@ -135,11 +135,11 @@ final class MoviesTableViewCell: UITableViewCell {
     private func setupMovieView() {
         contentView.addSubview(movieView)
         movieView.translatesAutoresizingMaskIntoConstraints = false
-        movieView.backgroundColor = .systemGray3
         movieView.leftAnchor.constraint(equalTo: movieImageView.rightAnchor, constant: 0).isActive = true
         movieView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 0).isActive = true
         movieView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -10).isActive = true
         movieView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+        movieView.backgroundColor = returnRandomBackgroundColor()
     }
 
     private func setupMovieImageView() {
@@ -156,5 +156,21 @@ final class MoviesTableViewCell: UITableViewCell {
         movieImageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
         movieImageView.backgroundColor = .black
         movieImageView.contentMode = .scaleAspectFill
+    }
+
+    private func returnRandomBackgroundColor() -> UIColor {
+        let random = Int.random(in: 0 ... 3)
+        switch random {
+        case 0:
+            return .systemPink
+        case 1:
+            return .systemTeal
+        case 2:
+            return .systemIndigo
+        case 3:
+            return .systemGray
+        default:
+            return .systemGray
+        }
     }
 }
