@@ -45,11 +45,12 @@ final class MoviesViewController: UIViewController {
 
     private func loadMovies(type: Int = 0) {
         model.getFilms(type: type) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case let .failure(error):
-                print(error)
+                self.showErrorAlert(title: "Ошибка", message: error.localizedDescription)
             case let .success(movies):
-                self?.movies = movies
+                self.movies = movies
             }
         }
     }

@@ -6,7 +6,7 @@ import UIKit
 final class MovieDetailsViewController: UIViewController {
     // MARK: - Private properties
 
-    let detailsView = DetailsMovieView()
+    private let detailsView = DetailsMovieView()
 
     // MARK: - UIViewController
 
